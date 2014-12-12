@@ -1,0 +1,30 @@
+Dev Notes
+ -File wdn/templates_3.1/scripts/compressed/all.js: changed WDN.template_path="" -> WDN.template_path="./"
+ -qtip2 dev branch downloaded for compatibility reasons with jquery-ui 1.9
+ -requests to /secure results in a 302 response which cannot be handled as the redirect is done
+  transparently; ajax calls result in cross domain restrictions; must ultimately have separate pages
+  for secure (UNL students, staff, faculty) and non-secure (guest, visitors) users
+ 
+ 
+   
+Migration worklog
+ -2014-01-20 
+  -cleared cse-courseplanner database via PHPMyAdmin
+  -imported 2014-01-20-09:56:59 snapshot
+  -deployed newly created WAR file; unsecure section is functional, but
+   only through 8080
+ -2014-01-21 
+  -Scott fixed the AJP port issues for 80 and 443, all checks out
+ -2014-01-23
+  -redeployed
+  -double checked DB; shut off access (changed password)
+  -deployed redirect project to cse-resources (works)
+  -updated link on advising page
+  
+  
+  Known issues outstanding:
+   -Data source is not working (several alternatives were tested, 
+    none worked, sticking with the JDBC fallback
+   -log4j appears to be configured correctly, but is not respecting the fycp.log file
+    (all logs are going to server.log), whatever.
+ 

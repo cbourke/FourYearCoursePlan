@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
+  <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+    </layout>
+  </appender>
+
+  <appender name="APP_LOG_FILE" class="org.apache.log4j.DailyRollingFileAppender">
+      <!-- TODO: change this either with a build script or hard code depending on final location -->
+      <param name="File" value="${jboss.server.log.dir}/fycp.log"/>
+      <param name="Append" value="false"/>
+      <param name="Threshold" value="DEBUG"/>
+      <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+    </layout>
+  </appender>
+  
+  <root>
+    <priority value ="debug" />
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="APP_LOG_FILE" />
+  </root>
+</log4j:configuration>

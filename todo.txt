@@ -1,0 +1,11 @@
+FYCP
+ -Add “report bugs” button
+ -respect the search course feature (ignore cross listings, how?)
+ -redeploy
+
+ Scrub passwords:
+  -LDAP
+  -JDBC
+  -readme (server passwords)
+  
+  

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+    id="FourYearCoursePlanner" 
+    version="2.4" 
+    xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+  <display-name>FourYearCoursePlan</display-name>
+  
+  <description>Four Year Academic Course Planning Application for Computer Science and Computer Engineering majors.</description>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>CourseServlet</servlet-name>
+    <servlet-class>unl.cse.servlet.CourseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CourseServlet</servlet-name>
+    <url-pattern>/getCourses</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ScheduleValidatorServlet</servlet-name>
+    <servlet-class>unl.cse.servlet.ScheduleValidatorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ScheduleValidatorServlet</servlet-name>
+    <url-pattern>/validateSchedule</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ScheduleBuilderServlet</servlet-name>
+    <servlet-class>unl.cse.servlet.ScheduleBuilderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ScheduleBuilderServlet</servlet-name>
+    <url-pattern>/buildSchedule</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PlanPdfServlet</servlet-name>
+    <servlet-class>unl.cse.servlet.PlanPdfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlanPdfServlet</servlet-name>
+    <url-pattern>/pdfSchedule</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UserDispatcherServlet</servlet-name>
+    <servlet-class>unl.cse.servlet.UserDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserDispatcherServlet</servlet-name>
+    <url-pattern>/secure/dispatchUser</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>StudentSearchServlet</servlet-name>
+    <servlet-class>unl.cse.servlet.StudentSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentSearchServlet</servlet-name>
+    <url-pattern>/secure/admin/searchStudent</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ScheduleLoaderServlet</servlet-name>
+    <servlet-class>unl.cse.servlet.ScheduleLoaderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ScheduleLoaderServlet</servlet-name>
+    <url-pattern>/secure/loadSchedule</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SchedulePersisterServlet</servlet-name>
+    <servlet-class>unl.cse.servlet.SchedulePersisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SchedulePersisterServlet</servlet-name>
+    <url-pattern>/secure/saveSchedule</url-pattern>
+  </servlet-mapping>
+
+<listener>
+    <listener-class>unl.cse.caching.UserRefresher</listener-class>
+</listener>
+<listener>
+    <listener-class>unl.cse.caching.CourseRefresher</listener-class>
+</listener>
+
+  	<filter>
+		<filter-name>CAS Authentication Filter</filter-name>
+		<filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
+		<init-param>
+			<param-name>casServerLoginUrl</param-name>
+			<param-value>https://login.unl.edu/cas/login</param-value>
+		</init-param>
+		<init-param>
+			<param-name>service</param-name>
+			<param-value>https://cse-resources.unl.edu/FourYearCoursePlan/secure/dispatchUser</param-value>
+		</init-param>
+		<init-param>
+			<param-name>renew</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>gateway</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	
+	<filter>
+		<filter-name>CAS Validation Filter</filter-name>
+		<filter-class>org.jasig.cas.client.validation.Cas10TicketValidationFilter</filter-class>
+		<init-param>
+			<param-name>casServerUrlPrefix</param-name>
+			<param-value>https://login.unl.edu/cas</param-value>
+		</init-param>
+        <init-param>
+			<param-name>serverName</param-name>
+			<param-value>https://cse-resources.unl.edu</param-value>
+		</init-param> 
+   	</filter>
+	
+	<filter>
+		<filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+		<filter-class>org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class>
+	</filter>
+	
+	<filter>
+		<filter-name>CAS Assertion Thread Local Filter</filter-name>
+		<filter-class>org.jasig.cas.client.util.AssertionThreadLocalFilter</filter-class>
+	</filter>
+
+    <filter-mapping>
+		<filter-name>CAS Authentication Filter</filter-name>
+		<url-pattern>/secure/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>CAS Validation Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	 
+	<filter-mapping>
+		<filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>CAS Assertion Thread Local Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+</web-app>

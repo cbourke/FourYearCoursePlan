@@ -1,0 +1,11 @@
+AddType font/x-woff .woff
+AddType image/svg+xml .svg
+AddType application/vnd.ms-fontobject .eot
+
+SetEnvIf Origin "^(.*\.unl\.edu(:\d+)?)$" ORIGIN_SUB_DOMAIN=$1
+<FilesMatch "\.(svg|eot|woff)$">
+    BrowserMatch \bMSIE\s9 no-cache-font
+    Header set Access-Control-Allow-Origin "%{ORIGIN_SUB_DOMAIN}e" env=ORIGIN_SUB_DOMAIN
+    Header set Cache-Control "no-cache, must-revalidate" env=no-cache-font
+    Header set Pragma "no-cache" env=no-cache-font
+</FilesMatch>
