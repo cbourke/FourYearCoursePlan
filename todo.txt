@@ -1,11 +1,19 @@
 FYCP
- -Add “report bugs” button
- -respect the search course feature (ignore cross listings, how?)
- -redeploy
+ 
+Deployment
+  -update user info from LDAP (can't: permissions restricted to localhost)
+  -commit to git (?)
 
- Scrub passwords:
-  -LDAP
-  -JDBC
-  -readme (server passwords)
-  
-  
+LONG TERM
+ -Respect the course search feature: as it is right now, a user searches
+  for a course and "adds" it, but the official name is whatever the first
+  listing from the bulletin app gives.  Cross listed courses may have alternative
+  numbering.  Feature may be required to support crosslistings or specify the
+  "preferred" numbering for this app.
+ -Data source (ConnectionFactory.DataSource) is not working, 
+  several alternatives were tested, but none worked.  Right now, 
+  code falls back onto JDBC connection; keeping until further testing can be
+  done.
+ -Logging: log4j appears to be configured correctly, but is not respecting the 
+  fycp.log file (all logs are going to server.log).
+
