@@ -154,7 +154,7 @@
 <!-- BEGIN APP CODE -->
 <div>
 
-	<h4 id="adviserBanner" style="margin-top: -2em;">Adviser Interface</h4>
+	<h4 id="advisorBanner" style="margin-top: -2em;">Advisor Interface</h4>
 	<h6>Currently Working with User: <span class="currentUser">No User Loaded</span></h6>
     <div class="navbar">
       <div class="navbar-inner">
@@ -237,15 +237,15 @@
 	        </div>
        </div>
 
-        <div id="adviserStudentSearch">
-		  <h3>Adviser Menu</h3>
+        <div id="advisorStudentSearch">
+		  <h3>Advisor Menu</h3>
 		  <div class="formContainer">
 		    <input type="hidden" id="userLogin"/>
 			<input type="text" id="studentSearch" class="span12 pull-right" placeholder="Search for Student">
-		    <button class="btn btn-mini btn-primary pull-right" onclick="cse.adviserLoad();">Load Schedule</button>
+		    <button class="btn btn-mini btn-primary pull-right" onclick="cse.advisorLoad();">Load Schedule</button>
 		  </div>
 		  <div style="clear: both;">&nbsp;</div>
-        </div><!-- end adviserStudentSearch -->
+        </div><!-- end advisorStudentSearch -->
         
       	<div id="validationContainer">
 	      <h3>Validation</h3>
@@ -298,7 +298,7 @@
     <script src="assets/touchPunch/jquery.ui.touch-punch.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/qtip2-2013.05.22/jquery.qtip.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.min.js"></script>
 
     <!-- begin modals for bootstrap -->	
     

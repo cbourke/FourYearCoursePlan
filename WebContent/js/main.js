@@ -8,11 +8,11 @@
  */
 
 var cse = {
-    version : "0.1.0",
+    version : "0.2.0",
     courses : [],
     schedule : null,
     transferTermCode : 1000,
-    currentSemester : 1138,
+    currentSemester : 1158,
     /**
      * Adds a term to the schedule
      * @param termCode
@@ -118,7 +118,7 @@ var cse = {
             return null;
         }
     },
-    adviserLoad : function () {
+    advisorLoad : function () {
         var user = $( "#userLogin" ).val();
         //console.log('loading schedule for user ' + user);
         $( "#studentSearch" ).val('');
@@ -219,9 +219,6 @@ var cse = {
             for(var i=0; i<this.schedule.termCodes.length; i++) {
                 var tCode = this.schedule.termCodes[i].toString();
                 var term = this.schedule[tCode];
-                if(term == null) {
-                    //console.log("Warning: term, "+this.schedule.termCodes[i].toString()+" does not appear to exist");
-                }
                 for(var j=0; j<term.length; j++) {
                     //if the term contains the course, remove it
                     if(term[j] == courseId) {
@@ -526,8 +523,8 @@ var cse = {
             if(course.aces) {
                 content += '<p>Satisfies ACE Outcome(s): '+ course.aces +'</p>';
             }
-            if(course.adviserComment) {
-                content += '<p>Adivser Comment: ' + course.adviserComment + '</p>';
+            if(course.advisorComment) {
+                content += '<p>Adivser Comment: ' + course.advisorComment + '</p>';
             }
             return content;
         },
@@ -793,7 +790,7 @@ var cse = {
             params = cse.getParameters();
             $.getJSON('./buildSchedule', params, function(data) {
                 cse.setSchedule(data);
-                cse.ui.addAlertDiv(cse.ui.alertValues.SUCCESS, "Successfullly built your schedule now you can save, customize, print, etc.!  Be sure to meet with an academic adviser if you have any questions!", $('#informationDiv'));
+                cse.ui.addAlertDiv(cse.ui.alertValues.SUCCESS, "Successfullly built your schedule now you can save, customize, print, etc.!  Be sure to meet with an academic advisor if you have any questions!", $('#informationDiv'));
             }).fail(function() {
                 console.log("Loading of schedule failed");
                 $('#scheduleDiv')
@@ -810,7 +807,8 @@ var cse = {
             if(data.status === 'noerror') {
                 cse.ui.addAlertDiv(cse.ui.alertValues.SUCCESS, 'There are no apparent ' +
                         'problems with your schedule!  However, this application is not intended ' + 
-                        'as a degree auditing tool.  Visit with an academic adviser to be sure that ' + 
+                        'as a degree auditing tool.  Degree requirements are <i>not</i> validated, ' + 
+                        'only scheduling and prerequisites.  Visit with an academic advisor to be sure that ' + 
                         'your schedule meets all degree requirements.', $('#validationDiv'));
             } else {
                 $.each(data.warningMessages, function(key, val) {

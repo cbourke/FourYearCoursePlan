@@ -180,13 +180,12 @@ WDN.setPluginParam('events', 'title', 'WDN');
     </label>
   
     <h6>Which Semester will you begin your studies?</h6>
-    
     <select id="term">
 	  <option value="8">Fall</option>
 	  <option value="1">Spring</option>
 	</select>
-	<input type="text" id="year" value="2015" readonly="readonly"/>    
-    
+	<input type="text" id="year" value="2015" readonly="readonly"/>
+
     <h6>How many years of a foreign language did you take in high school?</h6>
 	<select id="numYearsLang" name="numYearsLang">
 	  <option value="0">Less than 2 years</option>
@@ -289,12 +288,13 @@ Lincoln NE 68588-0115<br/>
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
+    	var currentYear = new Date().getFullYear();
     	$("#year").spinner({
     	  min: 2000,
     	  max: 2050
-    	});
+    	}).val(currentYear);
     });
-        
+    
     function goForward() {
         var degreeTypeid;
         var radios = document.getElementsByName('degreeType');
@@ -303,7 +303,6 @@ Lincoln NE 68588-0115<br/>
             degreeTypeid = radios[i].value;
           }
         }
-
 	    var e = document.getElementById("term");
 	    var sem = parseInt(e.options[e.selectedIndex].value);
 	    var year = parseInt($('#year').val());

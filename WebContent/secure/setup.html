@@ -85,7 +85,8 @@ WDN.setPluginParam('events', 'title', 'WDN');
             <a title="Logout" href="https://login.unl.edu/cas/logout?url=http%3A//www.unl.edu/">Logout</a>
         </li>
     </ul>
-</div><div id="wdn_search">
+</div>
+<div id="wdn_search">
     <form id="wdn_search_form" action="http://www.google.com/u/UNL1?sa=Google+Search&amp;q=" method="get" role="search">
         <fieldset>
             <legend class="hidden">Search</legend>
@@ -154,7 +155,7 @@ WDN.setPluginParam('events', 'title', 'WDN');
 	            <h1 style="display: none;">CSE Four Year Course Planner</h1>    
                 <!-- InstanceEndEditable -->
             </div>
-            <div id="http://localhost:8080/FourYearCoursePlan/app.html">
+            <div id="maincontent">
                 <!--THIS IS THE MAIN CONTENT AREA; WDN: see glossary item 'main content area' -->
                 <!-- InstanceBeginEditable name="maincontentarea" -->
                 
@@ -184,7 +185,7 @@ WDN.setPluginParam('events', 'title', 'WDN');
 	  <option value="8">Fall</option>
 	  <option value="1">Spring</option>
 	</select>
-	<input type="text" id="year" value="2013" readonly="readonly"/>    
+	<input type="text" id="year" value="2015" readonly="readonly"/>
 
     <h6>How many years of a foreign language did you take in high school?</h6>
 	<select id="numYearsLang" name="numYearsLang">
@@ -287,12 +288,12 @@ Lincoln NE 68588-0115<br/>
 <script src="assets/jquery-ui-1.10.3/js/jquery-ui-1.10.3.custom.min.js"></script>
 
 <script type="text/javascript">
-
     jQuery(document).ready(function() {
+    	var currentYear = new Date().getFullYear();
     	$("#year").spinner({
     	  min: 2000,
     	  max: 2050
-    	});
+    	}).val(currentYear);
     });
     
     function goForward() {
