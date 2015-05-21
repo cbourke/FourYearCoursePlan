@@ -51,6 +51,21 @@ public class CourseUtils {
 		}
 	};
 	
+	/**
+	 * Returns the honors version of the given course.  If no honors
+	 * version exists (not in the bulletin), <code>null</code> is 
+	 * returned.
+	 * @param c
+	 * @return
+	 */
+	public static Course getHonorsVersion(Course c) {
+		if(c.getNumber().endsWith("H")) {
+			return c;
+		} else {
+			return getCourse(c.getSubject() + c.getNumber() + "H");
+		}
+	}
+	
 	public static Course getCourse(String subjectNumber) { 
 		Course c = coursesByCatalog.get(subjectNumber);
 		if(c == null) {
@@ -123,7 +138,7 @@ public class CourseUtils {
 						rs.getString("title"),
 						rs.getString("description"),
 						rs.getString("prerequisite_text"),
-						rs.getString("adviser_comment"),
+						rs.getString("adviser_comment"), //needs to be adviser unless DB is changed
 						rs.getInt("credit_hours"), 
 						rs.getString("schedule"),
 						rs.getString("ui_group"));
@@ -205,4 +220,5 @@ public class CourseUtils {
 			return null;
 		}
 	}
+		
 }

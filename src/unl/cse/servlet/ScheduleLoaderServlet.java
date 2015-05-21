@@ -36,7 +36,7 @@ public class ScheduleLoaderServlet extends HttpServlet {
 				User adminUser = ScheduleDatabase.getOrCreateUser(userMyUnlLogin);
 				if(adminUser == null || !adminUser.isAdmin()) {
 					log.info("unauthenticated admin access attempted for user " + userMyUnlLogin + " (attempted to get plan for " + user + ")");
-					response.sendError(HttpServletResponse.SC_FORBIDDEN, "You must be logged in and be an adviser/admin to load schedules from the database for a different user");
+					response.sendError(HttpServletResponse.SC_FORBIDDEN, "You must be logged in and be an advisor/admin to load schedules from the database for a different user");
 					return;
 				}
 				log.info("admin access made for user " + userMyUnlLogin + " (retrieved plan for user " + user + ")");

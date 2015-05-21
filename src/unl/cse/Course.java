@@ -9,14 +9,14 @@ public class Course {
 	private String title;
 	private String description;
 	private String prerequisiteText;
-	private String adviserComment;
+	private String advisorComment;
 	private Integer creditHours;
 	private String schedule;
 	private String uiGroup;
 	
 	public Course(Integer dbCourseId, String subject, String number,
 			String title, String description, String prerequisiteText,
-			String adviserComment, Integer creditHours, String schedule, String uiGroup) {
+			String advisorComment, Integer creditHours, String schedule, String uiGroup) {
 		super();
 		this.dbCourseId = dbCourseId;
 		this.courseId = subject + number;
@@ -25,7 +25,7 @@ public class Course {
 		this.title = title;
 		this.description = description;
 		this.prerequisiteText = prerequisiteText;
-		this.adviserComment = adviserComment;
+		this.advisorComment = advisorComment;
 		this.creditHours = creditHours;
 		this.schedule = schedule;
 		this.uiGroup = uiGroup;
@@ -181,8 +181,8 @@ public class Course {
 		return true;
 	}
 	
-	public String getAdviserComment() {
-		return adviserComment;
+	public String getAdvisorComment() {
+		return advisorComment;
 	}
 
 }

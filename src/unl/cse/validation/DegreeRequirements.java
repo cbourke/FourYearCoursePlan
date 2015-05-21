@@ -60,12 +60,23 @@ public class DegreeRequirements {
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE436"), CourseUtils.getCourse("CSCE236")));
 		
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE430"), CourseUtils.getCourse("CSCE230")));
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE430"), CourseUtils.getCourse("CSCE310")));
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE438"), CourseUtils.getCourse("CSCE230")));
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE351"), CourseUtils.getCourse("CSCE230")));
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE451"), CourseUtils.getCourse("CSCE230")));
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE462"), CourseUtils.getCourse("CSCE230")));
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE462"), CourseUtils.getCourse("CSCE310")));
 
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE432"), CourseUtils.getCourse("CSCE430")));
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE430"), CourseUtils.getCourse("STAT380")));
+		
+		//430 and 462 require EITHER STAT380 OR ELEC305
+		for(String s : Arrays.asList("CSCE430", "CSCE462")) {
+			DisjunctiveRequirement r = new DisjunctiveRequirement(s + " requires either STAT380 or ELEC305 as a prerequisite");
+			r.addRequirement(new Prerequisite(CourseUtils.getCourse(s), CourseUtils.getCourse("STAT380")));
+			r.addRequirement(new Prerequisite(CourseUtils.getCourse(s), CourseUtils.getCourse("ELEC305")));
+			requirements.add(r);
+		}
+
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE432"), CourseUtils.getCourse("MATH314")));
 
 		for(String s : Arrays.asList("410", "413", "423", "421", "424", "425", "428", "430", "438", "435", "451", "436", "437", "456", "457", "475", "476", "478", "361", "464", "470", "471", "474", "477", "479")) {

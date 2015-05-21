@@ -39,7 +39,7 @@ public class SchedulePersisterServlet extends HttpServlet {
 				User adminUser = ScheduleDatabase.getOrCreateUser(userMyUnlLogin);
 				if(adminUser == null || !adminUser.isAdmin()) {
 					log.info("unauthenticated admin access attempted for user " + userMyUnlLogin + " (attempted to save plan for " + user + ")");
-					response.sendError(HttpServletResponse.SC_FORBIDDEN, "You must be logged in and be an adviser/admin to save schedules from the database for a different user");
+					response.sendError(HttpServletResponse.SC_FORBIDDEN, "You must be logged in and be an advisor/admin to save schedules from the database for a different user");
 					return;
 				}
 				log.info("admin access made for user " + userMyUnlLogin + " (saved plan for user " + user + ")");

@@ -40,7 +40,7 @@ public class ScheduleBuilder {
 			}
 			//if spring semester, advance the following courses by one semester as they are offered in the opposite semester sequence
 			if(terms.get(0) % 10 == 1) {
-				List<String> courseShift = Arrays.asList("ENGR10", "ENGR20", "CSCE236", "CSCE351", "CSCE462");
+				List<String> courseShift = Arrays.asList("CSCE10", "ENGR20", "CSCE236", "CSCE351", "CSCE462");
 				for(String str : courseShift) {
 					Course c = CourseUtils.getCourse(str);
 					Integer oldTerm = s.getCourseToTermMap().get(c);
@@ -89,8 +89,12 @@ public class ScheduleBuilder {
 
 			//if spring semester, advance the following courses by one semester as they are offered in the opposite semester sequence
 			if(terms.get(0) % 10 == 1) {
+				//remove CSCE10?
+				Course c = CourseUtils.getCourse("CSCE10");
+				s.removeCourse(c);
+				
 				//reschedule 322
-				Course c = CourseUtils.getCourse("CSCE322");
+				c = CourseUtils.getCourse("CSCE322");
 				Integer oldTerm = s.getCourseToTermMap().get(c);
 				int i = terms.indexOf(oldTerm);
 				s.reSchedule(c, terms.get(i+1));
@@ -208,6 +212,7 @@ public class ScheduleBuilder {
 
 		csSequence = new ArrayList<List<Course>>(8);
 		csSequence.add(Arrays.asList(
+				CourseUtils.getCourse("CSCE10"),
 				CourseUtils.getCourse("CSCE155A"),
 				CourseUtils.getCourse("ACE1")));
 		csSequence.add(Arrays.asList(
@@ -242,9 +247,9 @@ public class ScheduleBuilder {
 
 		ceSequence = new ArrayList<List<Course>>(8);
 		ceSequence.add(Arrays.asList(
+				CourseUtils.getCourse("CSCE10"),
 				CourseUtils.getCourse("CSCE155E"),
-				CourseUtils.getCourse("ACE5"),
-				CourseUtils.getCourse("ENGR10")));
+				CourseUtils.getCourse("ACE5")));
 		ceSequence.add(Arrays.asList(
 				CourseUtils.getCourse("CSCE156"),
 				CourseUtils.getCourse("CSCE235"),
