@@ -278,7 +278,7 @@ public class ScheduleBuilder {
 				CourseUtils.getCourse("ELEC305"),
 				CourseUtils.getCourse("CSCEELC1")));
 		ceSequence.add(Arrays.asList(
-				CourseUtils.getCourse("CSCE340"),
+				CourseUtils.getCourse("CSCE440"),
 				CourseUtils.getCourse("CSCEELC2"),
 				CourseUtils.getCourse("CSCE488"),
 				CourseUtils.getCourse("JGEN300"),
@@ -297,7 +297,7 @@ public class ScheduleBuilder {
 	public static void main(String args[]) {
 		DateTime dt = new DateTime();
 		System.out.println(dt);
-		Schedule s = getSchedule(Degree.COMPUTER_SCIENCE, 1138, 4, "MATH106");
+		Schedule s = getSchedule(Degree.COMPUTER_ENGINEERING, 1158, 4, "MATH106");
 		System.out.println(s.toJson());
 	}
 }

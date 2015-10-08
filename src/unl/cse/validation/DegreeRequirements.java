@@ -68,6 +68,7 @@ public class DegreeRequirements {
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE462"), CourseUtils.getCourse("CSCE310")));
 
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE432"), CourseUtils.getCourse("CSCE430")));
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE437"), CourseUtils.getCourse("CSCE430")));
 		
 		//430 and 462 require EITHER STAT380 OR ELEC305
 		for(String s : Arrays.asList("CSCE430", "CSCE462")) {
@@ -83,21 +84,20 @@ public class DegreeRequirements {
 			requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE"+s), CourseUtils.getCourse("CSCE310")));
 		}
 		
+		//STAT 380 is a prereq for CSCE 430, CSCE 432, CSCE 462, CSCE 465, CSCE 471, CSCE 474
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE430"), CourseUtils.getCourse("STAT380")));
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE432"), CourseUtils.getCourse("STAT380")));
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE462"), CourseUtils.getCourse("STAT380")));
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE465"), CourseUtils.getCourse("STAT380")));
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE471"), CourseUtils.getCourse("STAT380")));
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE474"), CourseUtils.getCourse("STAT380")));
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE479"), CourseUtils.getCourse("STAT380")));
 
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE464"), CourseUtils.getCourse("MATH314")));
+		//MATH 314 is a prereq for CSCE 432, 439, 441, 470, 477
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE432"), CourseUtils.getCourse("MATH314")));
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE439"), CourseUtils.getCourse("MATH314")));
+		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE441"), CourseUtils.getCourse("MATH314")));
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE470"), CourseUtils.getCourse("MATH314")));
 		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE477"), CourseUtils.getCourse("MATH314")));
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE479"), CourseUtils.getCourse("MATH314")));
-
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE464"), CourseUtils.getCourse("CSCE437")));
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE470"), CourseUtils.getCourse("CSCE437")));
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE471"), CourseUtils.getCourse("CSCE437")));
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE474"), CourseUtils.getCourse("CSCE437")));
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE477"), CourseUtils.getCourse("CSCE437")));
-		requirements.add(new Prerequisite(CourseUtils.getCourse("CSCE479"), CourseUtils.getCourse("CSCE437")));
 		
 		requirements.add(new SemesterCreditHourRequirements());
 		
